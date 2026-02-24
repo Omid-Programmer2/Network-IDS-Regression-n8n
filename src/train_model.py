@@ -10,7 +10,7 @@ REPORT_PATH = '../reports/baseline_regression.png'
 
 def train_anomaly_detector():
     print(f"Loading data from: {DATA_PATH}...")
-    
+    c
     # Load the CSV file provided
     try:
         df = pd.read_csv(DATA_PATH)
