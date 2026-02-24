@@ -9,7 +9,7 @@ THRESHOLD = 144.83
 # Interface name (You might need to check the exact name in Scapy)
 INTERFACE = dev_from_index(14)
 # n8n Webhook URL (We will fill this in Phase 4)
-N8N_WEBHOOK_URL = "http://YOUR_N8N_IP:5678/webhook/attack-detected"
+N8N_WEBHOOK_URL = "http://localhost:5678/webhook-test/62246be6-37d8-466e-a23e-33c11d8970c9"
 
 packet_count = 0
 
@@ -45,7 +45,7 @@ def send_alert(pps):
     }
     try:
         # We will activate this once n8n is ready
-        # requests.post(N8N_WEBHOOK_URL, json=payload)
+        requests.post(N8N_WEBHOOK_URL, json=payload)
         print("[+] Alert signal prepared for n8n.")
     except Exception as e:
         print(f"[-] Failed to connect to n8n: {e}")
