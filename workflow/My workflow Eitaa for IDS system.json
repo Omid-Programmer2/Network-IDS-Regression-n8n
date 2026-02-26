@@ -1,0 +1,76 @@
+{
+  "name": "My workflow Eitaa for IDS system",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "62246be6-37d8-466e-a23e-33c11d8970c9",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -912,
+        48
+      ],
+      "id": "6774cf0d-4597-44fd-8bff-dd623607ad2e",
+      "name": "Webhook",
+      "webhookId": "62246be6-37d8-466e-a23e-33c11d8970c9"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://eitaayar.ir/api/bot430632:cc6f2cbd-580d-42c2-acbc-44eb9f5a696e/sendMessage",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "11000415"
+            },
+            {
+              "name": "text",
+              "value": "=🔴 IDS ALERT: Attack Detected 🔴 --------------------------- Status: {{ $json.body.status }} Confidence: {{ $json.body.probability }} Method: {{ $json.body.alert_type }} Student: {{ $json.body.student }} Supervisor: {{ $json.body.professor }} --------------------------- Target: {{ $json.body.target_os }} Time: {{ $json.body.timestamp }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -640,
+        48
+      ],
+      "id": "a7ce5b06-9086-4d76-9723-af1fc06556fc",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "d1a7d15f-6c8b-4546-8ede-cf851f719c44",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e48b868895bd0148547c406cff5145792841e60d27055cef4137b5ce120a64d4"
+  },
+  "id": "48kmV3mliAxYkpwM",
+  "tags": []
+}

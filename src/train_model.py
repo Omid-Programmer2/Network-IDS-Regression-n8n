@@ -10,7 +10,7 @@ REPORT_PATH = '../reports/baseline_regression.png'
 
 def train_anomaly_detector():
     print(f"Loading data from: {DATA_PATH}...")
-    c
+    
     # Load the CSV file provided
     try:
         df = pd.read_csv(DATA_PATH)
@@ -24,6 +24,11 @@ def train_anomaly_detector():
     
     # Group by 'Time' to get the count of packets in each second
     pps_data = df.groupby('Time').size().reset_index(name='Packet_Count')
+    
+    # After pps_data calculation is completed:
+    output_path = '../data/processed/pps_data.csv'
+    pps_data.to_csv(output_path, index=False)
+    print(f"File successfully saved to: {output_path}")
     
     # Prepare X (Time) and y (Packet Count) for Linear Regression
     X = pps_data['Time'].values.reshape(-1, 1)

@@ -1,0 +1,13 @@
+(.venv) D:\Omid\دروس دانشگاه\ترم 7\Final Project\project\src>py train_model.py
+Loading data from: ../data/raw/normal_traffic.csv...
+File successfully saved to: ../data/processed/pps_data.csv
+
+==============================
+ REGRESSION ANALYSIS RESULTS
+==============================
+Average PPS: 33.48
+Standard Error (Se): 37.1156
+Calculated Threshold: 144.83
+==============================
+
+Analysis plot saved to: ../reports/baseline_regression.png

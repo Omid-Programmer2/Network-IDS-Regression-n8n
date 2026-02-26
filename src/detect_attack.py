@@ -34,21 +34,28 @@ def start_monitoring():
             print(f"\n[!!!] ANOMALY DETECTED! Traffic: {current_pps} PPS")
             send_alert(current_pps)
             # Small cooldown to avoid spamming alerts
-            time.sleep(2)
+            time.sleep(5)
 
 def send_alert(pps):
+    # Prepare the payload with the exact fields you want in Eitaa
     payload = {
-        "status": "Attack Detected",
-        "pps_count": pps,
+        "method": "Linear Regression Model",
+        "traffic": pps,
         "threshold": THRESHOLD,
-        "message": "Intrusion detected by Linear Regression Model"
+        "status": "Attack Detected",
+        "message": "Intrusion detected by Linear Regression Model",
+        "student": "Omid",
+        "network": "VMware VMnet4"
     }
+    
     try:
-        # We will activate this once n8n is ready
-        requests.post(N8N_WEBHOOK_URL, json=payload)
-        print("[+] Alert signal prepared for n8n.")
+        response = requests.post(N8N_WEBHOOK_URL, json=payload)
+        if response.status_code == 200:
+            print(f"[+] Alert sent! Traffic: {pps} PPS")
+        else:
+            print(f"[!] n8n Error: {response.status_code}")
     except Exception as e:
-        print(f"[-] Failed to connect to n8n: {e}")
+        print(f"[-] Connection failed: {e}")
 
 if __name__ == "__main__":
     start_monitoring()
