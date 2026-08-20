@@ -4,7 +4,7 @@ from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 import os
 
-# Configuration - Paths based on your project structure
+# Configuration - Paths based on my project structure
 DATA_PATH = '../data/raw/normal_traffic.csv'
 REPORT_PATH = '../reports/baseline_regression.png'
 
